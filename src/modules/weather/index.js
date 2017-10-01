@@ -1,24 +1,37 @@
-// import axios from 'axios'
+import { fetchCurrentWeather, fetchCurrentWeatherSync } from '../../services/weather'
 
-export const FETCH_CITIES = 'weather/FETCH_CITIES'
-export const FETCH_CITY   = 'weather/FETCH_CITY'
+export const FETCH_CITIES_REQUEST = 'weather/FETCH_CITIES_REQUEST'
+export const FETCH_CITIES_SUCCESS = 'weather/FETCH_CITIES_SUCCESS'
+export const FETCH_CITIES_ERROR   = 'weather/FETCH_CITIES_ERROR'
+export const FETCH_CITIES_SYNC    = 'weather/FETCH_CITIES_SYNC'
 
-const API_URL = 'http://api.openweathermap.org/data/2.5';
-const API_KEY = 'c55a3e37688d8ee90fb0e92ca828cbfa';
-
+// State
 const initialState = {
   cities: []
 }
 
+// Reducers
 export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_CITIES:
+    case FETCH_CITIES_REQUEST:
+      return {
+        ...state,
+        cities: state.cities
+      }
+
+    case FETCH_CITIES_SUCCESS:
       return {
         ...state,
         cities: state.cities.concat(action.payload)
       }
 
-    case FETCH_CITY:
+    case FETCH_CITIES_ERROR:
+      return {
+        ...state,
+        cities: state.cities
+      }
+
+    case FETCH_CITIES_SYNC:
       return {
         ...state,
         cities: state.cities.concat(action.payload)
@@ -29,33 +42,49 @@ export default (state = initialState, action) => {
   }
 }
 
-export const fetchCities = () => {
-  var cities = [
-    {"coord":{"lon":-0.13,"lat":51.51},"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"base":"stations","main":{"temp":288.52,"pressure":1016,"humidity":72,"temp_min":287.15,"temp_max":289.15},"visibility":10000,"wind":{"speed":5.1,"deg":210},"clouds":{"all":56},"dt":1506784800,"sys":{"type":1,"id":5091,"message":0.0035,"country":"GB","sunrise":1506751247,"sunset":1506793124},"id":2643743,"name":"London","cod":200},
-    {"coord":{"lon":-0.13,"lat":51.51},"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"base":"stations","main":{"temp":288.52,"pressure":1016,"humidity":72,"temp_min":287.15,"temp_max":289.15},"visibility":10000,"wind":{"speed":5.1,"deg":210},"clouds":{"all":56},"dt":1506784800,"sys":{"type":1,"id":5091,"message":0.0035,"country":"GB","sunrise":1506751247,"sunset":1506793124},"id":2643744,"name":"Berlin","cod":200}
-  ]
-
-  debugger;
-
+// Action Creators
+export const fetchCities = (cityNames) => {
   return dispatch => {
-    dispatch({
-      type: FETCH_CITIES,
-      payload: cities
-    })
+    dispatch(fetchCitiesRequestAction());
+    fetchCurrentWeather(cityNames)
+      .then(cities => dispatch(fetchCitiesSuccessAction(cities)))
+      .catch((error) => {
+        dispatch(fetchCitiesErrorAction());
+        console.log(error);
+      })
   }
 }
 
-// export const fetchCity = (cityName) => {
-//   return dispatch => {
-//     axios.get(`${API_URL}/weather?q=${cityName}&APPID=${API_KEY}`)
-//     .then(response => {
-//       dispatch({
-//         type: FETCH_CITY,
-//         payload: response.data.data
-//       })
-//     })
-//     .catch((error) => {
-//       console.log(error)
-//     })
-//   }
-// }
+export const fetchCitiesSync = (cityNames) => {
+  let cities = fetchCurrentWeatherSync(cityNames);
+  return dispatch => {
+    dispatch(fetchCitiesSyncAction(cities))
+  }
+}
+
+// Actions
+const fetchCitiesRequestAction = () => {
+  return {
+    type: FETCH_CITIES_REQUEST
+  }
+}
+
+const fetchCitiesSuccessAction = (cities) => {
+  return {
+    type: FETCH_CITIES_SUCCESS,
+    payload: cities
+  }
+}
+
+const fetchCitiesErrorAction = () => {
+  return {
+    type: FETCH_CITIES_ERROR
+  }
+}
+
+const fetchCitiesSyncAction = (cities) => {
+  return {
+    type: FETCH_CITIES_SYNC,
+    payload: cities
+  }
+}

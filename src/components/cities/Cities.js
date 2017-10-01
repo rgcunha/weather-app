@@ -6,7 +6,8 @@ import './Cities.css'
 class Cities extends React.Component {
 
   componentWillMount = () => {
-    this.props.fetchCities();
+    const cityNames = ["Berlin", "Waltham"];
+    this.props.fetchCities(cityNames);
   }
 
   listCities = (cities) => {
