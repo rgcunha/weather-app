@@ -25,7 +25,6 @@ class Cities extends React.Component {
   }
 }
 
-
 Cities.propTypes = {
   cities      : PropTypes.array.isRequired,
   fetchCities : PropTypes.func.isRequired
