@@ -1,14 +1,14 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { fetchCities } from '../../modules/weather'
-import Cities from '../../components/cities'
+import { fetchCitiesSync } from '../../modules/weather'
+import FavoriteCities from '../../components/favorite-cities'
 
 const mapStateToProps = state => ({
   cities: state.weather.cities
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchCities
+  fetchCities: fetchCitiesSync
 }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cities)
+export default connect(mapStateToProps, mapDispatchToProps)(FavoriteCities)

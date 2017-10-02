@@ -1,11 +1,11 @@
 import React from 'react'
-import Cities from '../../containers/cities'
+import FavoriteCities from '../../containers/favorite-cities'
 
-const Home = props => (
-  <div>
-    <h1>Home</h1>
-    <Cities/>
+const HomeView = props => (
+  <div className="home">
+    <h1>My Locations</h1>
+    <FavoriteCities />
   </div>
 )
 
-export default Home
+export default HomeView
