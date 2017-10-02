@@ -14,27 +14,21 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_CITIES_REQUEST:
-      return {
-        ...state,
-        cities: state.cities
-      }
+      return state;
 
     case FETCH_CITIES_SUCCESS:
       return {
         ...state,
-        cities: state.cities.concat(action.payload)
+        cities: action.payload
       }
 
     case FETCH_CITIES_ERROR:
-      return {
-        ...state,
-        cities: state.cities
-      }
+      return state;
 
     case FETCH_CITIES_SYNC:
       return {
         ...state,
-        cities: state.cities.concat(action.payload)
+        cities: action.payload
       }
 
     default:
