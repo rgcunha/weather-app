@@ -4,7 +4,8 @@ import { fetchCities } from '../../modules/weather';
 import FavoriteCities from '../../components/favorite-cities';
 
 const mapStateToProps = state => ({
-  cities: state.weather.cities
+  cities: state.weather.cities,
+  isFetching: state.weather.isFetching
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

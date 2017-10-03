@@ -7,28 +7,37 @@ export const FETCH_CITIES_SYNC = 'weather/FETCH_CITIES_SYNC';
 
 // State
 const initialState = {
-  cities: []
+  cities: [],
+  isFetching: false
 };
 
 // Reducers
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_CITIES_REQUEST:
-      return state;
+      return {
+        ...state,
+        isFetching: true
+      };
 
     case FETCH_CITIES_SUCCESS:
       return {
         ...state,
-        cities: action.payload
+        cities: action.payload,
+        isFetching: false
       };
 
     case FETCH_CITIES_ERROR:
-      return state;
+      return {
+        ...state,
+        isFetching: false
+      };
 
     case FETCH_CITIES_SYNC:
       return {
         ...state,
-        cities: action.payload
+        cities: action.payload,
+        isFetching: false
       };
 
     default:

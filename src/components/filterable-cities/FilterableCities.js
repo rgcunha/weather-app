@@ -29,7 +29,7 @@ class FilterableCities extends React.Component {
     fetchCitiesWeather(cities)
       .then(cities => this.setState({ cities }));
 
-    // Sync - Test
+    // Sync - Offling testing
     // const cities = fetchCitiesWeatherSync(cities)
   }
 

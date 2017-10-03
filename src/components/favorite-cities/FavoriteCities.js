@@ -9,10 +9,17 @@ class FavoriteCities extends React.Component {
     this.props.fetchCities(cityNames);
   }
 
+  results() {
+    if (this.props.isFetching) {
+      return <span>Fetching data...</span>;
+    }
+    return <Cities cities={this.props.cities} />;
+  }
+
   render() {
     return (
-      <div className="favourite-cities">
-        <Cities cities={this.props.cities} />
+      <div className="favorite-cities">
+        { this.results() }
       </div>
     );
   }
@@ -20,6 +27,7 @@ class FavoriteCities extends React.Component {
 
 FavoriteCities.propTypes = {
   cities: PropTypes.arrayOf(CityPropType).isRequired,
+  isFetching: PropTypes.bool.isRequired,
   fetchCities: PropTypes.func.isRequired
 };
 
