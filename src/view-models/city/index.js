@@ -70,4 +70,8 @@ export default class CityViewModel {
   get coord() {
     return this.model.coord;
   }
+
+  get lastReceivedDate() {
+    return formatTime(this.model.dt);
+  }
 }

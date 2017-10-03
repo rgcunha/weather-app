@@ -6,7 +6,7 @@ import './City.css';
 const City = (props) => {
   const {
     name, iconUrl, description, temp, tempMin, tempMax, country,
-    wind, clouds, pressure, humidity, sunrise, sunset, coord
+    wind, clouds, pressure, humidity, sunrise, sunset, coord, lastReceivedDate
   } = props.city;
 
   const rowsData = [
@@ -38,6 +38,7 @@ const City = (props) => {
           {listRows(rowsData)}
         </tbody>
       </table>
+      <span>Last data received on: {lastReceivedDate}</span>
     </div>
   );
 };
