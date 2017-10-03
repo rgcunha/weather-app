@@ -5,7 +5,9 @@ import './Header.css';
 const Header = () => (
   <header>
     <div className="header-logo">
-      <a href="https://github.com/rgcunha"><img src="/img/logo.svg" alt="GitHub" /></a>
+      <a href="https://github.com/rgcunha" target="_blank" rel="noreferrer noopener">
+        <img src="/img/github.svg" alt="GitHub" />
+      </a>
     </div>
     <div className="header-nav">
       <nav>

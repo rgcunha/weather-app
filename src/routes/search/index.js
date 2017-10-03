@@ -3,7 +3,6 @@ import FilterableCities from '../../components/filterable-cities';
 
 const SearchView = () => (
   <div className="search">
-    <h1>Search</h1>
     <FilterableCities />
   </div>
 );

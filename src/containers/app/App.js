@@ -7,8 +7,8 @@ import './App.css';
 
 const App = () => (
   <div>
-    <Header />
     <div className="container">
+      <Header />
       <main>
         <Route exact path="/" component={HomeView} />
         <Route exact path="/search" component={SearchView} />

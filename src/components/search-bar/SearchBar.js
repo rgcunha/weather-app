@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import './SearchBar.css';
 
 const SearchBar = (props) => {
@@ -8,8 +9,13 @@ const SearchBar = (props) => {
 
   return (
     <div className="search-bar">
-      <input name="city-name" type="text" onChange={onTextChange} placeholder="e.g: Berlin" />
-      <button onClick={onSearchClick} className="btn btn-primary">Search</button>
+      <Form inline>
+        <FormGroup controlId="formInlineCityName">
+          <FormControl type="text" placeholder="e.g.: Berlin" onChange={onTextChange} />
+        </FormGroup>
+        {' '}
+        <Button className="btn btn-primary" onClick={onSearchClick}>Search</Button>
+      </Form>
     </div>
   );
 };

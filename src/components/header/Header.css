@@ -1,11 +1,17 @@
 .header-logo {
-  margin: 30px;
+  margin-top: 30px;
+  margin-bottom: 15px;
   text-align: center;
 }
 
+.header-logo img {
+  height: 50px;
+}
+
 .header-nav {
-  margin: 30px;
+  margin-bottom: 30px;
   text-align: center;
+  border-bottom: 1px solid grey;
 }
 
 .header-nav nav {
@@ -17,8 +23,7 @@
   padding: 10px;
   margin: 20px 40px;
   text-decoration: none;
-  color: black;
-  font-weight: bold;
+  color: grey;
 }
 
 .header-nav ul {
@@ -31,8 +36,9 @@
   height: 40px;
   line-height: 40px;
   display: inline-block;
+  margin-bottom: 1px;
 }
 
 .header-nav a:hover {
-  border-bottom: 2px solid #6cb1e8;
+  border-bottom: 3px solid grey;
 }
