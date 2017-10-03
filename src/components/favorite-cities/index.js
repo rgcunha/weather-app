@@ -1,3 +1,3 @@
-import FavoriteCities from './FavoriteCities'
+import FavoriteCities from './FavoriteCities';
 
-export default FavoriteCities
+export default FavoriteCities;

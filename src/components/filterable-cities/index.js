@@ -1,3 +1,3 @@
-import FilterableCities from './FilterableCities'
+import FilterableCities from './FilterableCities';
 
-export default FilterableCities
+export default FilterableCities;

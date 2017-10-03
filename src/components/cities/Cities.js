@@ -1,23 +1,22 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import City from '../city'
-import './Cities.css'
+import React from 'react';
+import PropTypes from 'prop-types';
+import CityPropType from '../../lib/PropTypeValues';
+import City from '../city';
+import './Cities.css';
 
 const Cities = (props) => {
-  const listCities = (cities) => {
-    return cities.map((city) =>
-      <City key={city.id} city={city} />
-    )
-  };
+  const listCities = cities => cities.map(city =>
+    <City key={city.id} city={city} />,
+  );
   return (
-    <div className='cities'>
+    <div className="cities">
       {listCities(props.cities)}
     </div>
-  )
-}
+  );
+};
 
 Cities.propTypes = {
-  cities      : PropTypes.array.isRequired,
-}
+  cities: PropTypes.arrayOf(CityPropType).isRequired
+};
 
-export default Cities
+export default Cities;

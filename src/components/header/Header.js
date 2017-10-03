@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-import './Header.css'
+import { Link } from 'react-router-dom';
+import './Header.css';
 
 const Header = () => (
   <header>
     <div className="header-logo">
-      <a href="https://github.com/rgcunha"><img src="/img/logo.svg" alt="GitHub"/></a>
+      <a href="https://github.com/rgcunha"><img src="/img/logo.svg" alt="GitHub" /></a>
     </div>
     <div className="header-nav">
       <nav>
@@ -16,6 +16,6 @@ const Header = () => (
       </nav>
     </div>
   </header>
-)
+);
 
-export default Header
+export default Header;
