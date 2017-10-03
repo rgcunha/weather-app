@@ -1,5 +1,6 @@
 import React from 'react';
 import CityPropType from '../../lib/PropTypeValues';
+import CityRow from '../city-row';
 import './City.css';
 
 const City = (props) => {
@@ -8,6 +9,21 @@ const City = (props) => {
     wind, clouds, pressure, humidity, sunrise, sunset, coord
   } = props.city;
 
+  const rowsData = [
+    { title: 'Max', description: tempMax },
+    { title: 'Min', description: tempMin },
+    { title: 'Wind', description: `Speed: ${wind.speed}, Direction: ${wind.direction} (${wind.deg})` },
+    { title: 'Cloudiness', description: clouds },
+    { title: 'Pressure', description: pressure },
+    { title: 'Humidity', description: humidity },
+    { title: 'Sunrise', description: sunrise },
+    { title: 'Sunset', description: sunset },
+    { title: 'Geo coords', description: `[${coord.lon}, ${coord.lat}]` }
+  ];
+
+  const listRows = rows => rows.map(row =>
+    <CityRow key={row.title} title={row.title} description={row.description} />
+  );
   return (
     <div className="city">
       <h2>Weather in: {name}, {country}</h2>
@@ -15,44 +31,9 @@ const City = (props) => {
         <img src={iconUrl} alt={description} />
         <span>{temp}, {description}</span>
       </h2>
-      <table className="city-table">
+      <table className="table table-striped city-table">
         <tbody>
-          <tr className="city-row">
-            <th>Temperature Max</th>
-            <td>{tempMax}</td>
-          </tr>
-          <tr className="city-row">
-            <th>Temperature Min</th>
-            <td>{tempMin}</td>
-          </tr>
-          <tr className="city-row">
-            <th>Wind</th>
-            <td>Speed: {wind.speed}, Direction: {wind.direction} ({wind.deg})</td>
-          </tr>
-          <tr className="city-row">
-            <th>Cloudiness</th>
-            <td>{clouds}</td>
-          </tr>
-          <tr className="city-row">
-            <th>Pressure</th>
-            <td>{pressure}</td>
-          </tr>
-          <tr className="city-row">
-            <th>Humidity</th>
-            <td>{humidity}</td>
-          </tr>
-          <tr className="city-row">
-            <th>Sunrise</th>
-            <td>{sunrise}</td>
-          </tr>
-          <tr className="city-row">
-            <th>Sunset</th>
-            <td>{sunset}</td>
-          </tr>
-          <tr className="city-row">
-            <th>Geo coords</th>
-            <td>[{coord.lon}, {coord.lat}]</td>
-          </tr>
+          {listRows(rowsData)}
         </tbody>
       </table>
     </div>
