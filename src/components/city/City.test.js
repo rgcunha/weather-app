@@ -20,7 +20,7 @@ describe.skip('<City />', () => {
 
   test('renders <CityRow /> with the right props', () => {
     const { title, description } = wrapper.find(CityRow).first().props();
-    expect(title).toEqual("Max");
-    expect(description).toEqual("12 °C");
+    expect(title).toEqual('Max');
+    expect(description).toEqual('12 °C');
   });
 });

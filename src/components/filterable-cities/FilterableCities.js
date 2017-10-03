@@ -18,15 +18,11 @@ class FilterableCities extends React.Component {
     this.setState(() => ({ searchText: text }));
   }
 
-  searchTextToArray(text) {
-    return text.split(';');
-  }
-
   searchCities() {
-    let cities = this.searchTextToArray(this.state.searchText);
+    const cityNamesArray = this.state.searchText.split(';');
 
     // Async - API
-    fetchCitiesWeather(cities)
+    fetchCitiesWeather(cityNamesArray)
       .then(cities => this.setState({ cities }));
 
     // Sync - Offling testing

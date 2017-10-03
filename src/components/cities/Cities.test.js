@@ -6,8 +6,8 @@ import City from '../city';
 import CityViewModel from '../../../test/factories/view-models/city';
 
 const mockCities = [
-  CityViewModel.build({ name: "Berlin" }),
-  CityViewModel.build({ name: "Paris" })
+  CityViewModel.build({ name: 'Berlin' }),
+  CityViewModel.build({ name: 'Paris' })
 ];
 
 describe('<Cities />', () => {

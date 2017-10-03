@@ -1,3 +1,5 @@
 public/**/*.js
 node_modules/**/*.js
 src/registerServiceWorker.js
+src/setupTests.js
+*.test.js

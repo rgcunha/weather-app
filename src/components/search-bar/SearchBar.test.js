@@ -24,7 +24,7 @@ describe('<SearchBar />', () => {
   });
 
   test('simulate change events', () => {
-    const mockEvent = { target: { value: "Berlin" } }
+    const mockEvent = { target: { value: 'Berlin' } };
     wrapper.find(FormControl).simulate('change', mockEvent);
     expect(mockOnSearchTextChange.mock.calls.length).toEqual(1);
   });
