@@ -1,4 +1,4 @@
-import { fetchCurrentWeather, fetchCurrentWeatherSync } from '../../services/weather';
+import { fetchCitiesWeather, fetchCitiesWeatherSync } from '../../services/weather';
 
 export const FETCH_CITIES_REQUEST = 'weather/FETCH_CITIES_REQUEST';
 export const FETCH_CITIES_SUCCESS = 'weather/FETCH_CITIES_SUCCESS';
@@ -58,7 +58,7 @@ const fetchCitiesSyncAction = cities => ({
 // Action Creators
 export const fetchCities = cityNames => (dispatch) => {
   dispatch(fetchCitiesRequestAction());
-  fetchCurrentWeather(cityNames)
+  fetchCitiesWeather(cityNames)
     .then(cities => dispatch(fetchCitiesSuccessAction(cities)))
     .catch((error) => {
       console.log(error);
@@ -67,7 +67,7 @@ export const fetchCities = cityNames => (dispatch) => {
 };
 
 export const fetchCitiesSync = (cityNames) => {
-  const cities = fetchCurrentWeatherSync(cityNames);
+  const cities = fetchCitiesWeatherSync(cityNames);
   return (dispatch) => {
     dispatch(fetchCitiesSyncAction(cities));
   };

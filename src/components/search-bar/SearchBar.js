@@ -11,7 +11,7 @@ const SearchBar = (props) => {
     <div className="search-bar">
       <Form inline>
         <FormGroup controlId="formInlineCityName">
-          <FormControl type="text" placeholder="e.g.: Berlin" onChange={onTextChange} />
+          <FormControl type="text" placeholder="e.g.: Berlin, de; London" onChange={onTextChange} />
         </FormGroup>
         {' '}
         <Button className="btn btn-primary" onClick={onSearchClick}>Search</Button>

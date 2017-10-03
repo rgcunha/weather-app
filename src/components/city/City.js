@@ -26,8 +26,10 @@ const City = (props) => {
   );
   return (
     <div className="city">
-      <h2>Weather in: {name}, {country}</h2>
-      <h2>
+      <h2 className="city-title">
+        Weather in: {name}, {country}
+      </h2>
+      <h2 className="city-weather">
         <img src={iconUrl} alt={description} />
         <span>{temp}, {description}</span>
       </h2>

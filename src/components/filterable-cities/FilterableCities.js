@@ -1,7 +1,7 @@
 import React from 'react';
 import Cities from '../cities';
 import SearchBar from '../search-bar';
-import { fetchCurrentWeather } from '../../services/weather';
+import { fetchCitiesWeather } from '../../services/weather';
 
 class FilterableCities extends React.Component {
   constructor(props) {
@@ -18,12 +18,19 @@ class FilterableCities extends React.Component {
     this.setState(() => ({ searchText: text }));
   }
 
+  searchTextToArray(text) {
+    return text.split(';');
+  }
+
   searchCities() {
-    fetchCurrentWeather([this.state.searchText])
+    let cities = this.searchTextToArray(this.state.searchText);
+
+    // Async - API
+    fetchCitiesWeather(cities)
       .then(cities => this.setState({ cities }));
 
-    // Sync
-    // const cities = fetchCurrentWeatherSync([this.state.searchText])
+    // Sync - Test
+    // const cities = fetchCitiesWeatherSync(cities)
   }
 
   render() {

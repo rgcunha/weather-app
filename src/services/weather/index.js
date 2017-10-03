@@ -10,17 +10,23 @@ const samples = [
   { coord: { lon: -71.24, lat: 42.38 }, weather: [{ id: 800, main: 'Clear', description: 'clear sky', icon: '01d' }], base: 'stations', main: { temp: 289.07, pressure: 1027, humidity: 41, temp_min: 288.15, temp_max: 290.15 }, visibility: 16093, wind: { speed: 3.6, deg: 320 }, clouds: { all: 1 }, dt: 1506874500, sys: { type: 1, id: 1272, message: 0.0543, country: 'US', sunrise: 1506854584, sunset: 1506896688 }, id: 4954380, name: 'Waltham', cod: 200 }
 ];
 
-export const fetchCurrentWeather = (cityNames) => {
+export const fetchCityWeather = cityName => axios.get(currentWeatherUrl(cityName));
+
+export const fetchCitiesWeather = (cityNames) => {
   const promises = [];
-  cityNames.forEach((cityName) => {
-    const url = `${API_URL}/weather?q=${cityName}&APPID=${API_KEY}&units=metric`;
-    promises.push(axios.get(url));
-  });
+  cityNames.forEach(cityName => promises.push(fetchCityWeather(cityName)));
   return axios.all(promises)
     .then(response => response.map(cityResponse => new CityViewModel(cityResponse.data)));
 };
 
-export const fetchCurrentWeatherSync = (cityNames) => {
+export const fetchCityWeatherSync = (cityName) => {
+  const selectedCities = samples.filter(city => cityName === city.name);
+  return selectedCities.map(city => new CityViewModel(city));
+};
+
+export const fetchCitiesWeatherSync = (cityNames) => {
   const selectedCities = samples.filter(city => cityNames.indexOf(city.name) > -1);
   return selectedCities.map(city => new CityViewModel(city));
 };
+
+const currentWeatherUrl = (cityName) => `${API_URL}/weather?q=${cityName}&APPID=${API_KEY}&units=metric`;
