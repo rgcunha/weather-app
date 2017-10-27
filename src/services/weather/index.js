@@ -1,7 +1,7 @@
 import axios from 'axios';
 import CityViewModel from '../../view-models/city';
 
-const API_URL = 'http://api.openweathermap.org/data/2.5';
+const API_URL = 'https://api.openweathermap.org/data/2.5';
 const API_KEY = 'c55a3e37688d8ee90fb0e92ca828cbfa';
 
 const samples = [
